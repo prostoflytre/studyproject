@@ -2,7 +2,7 @@ import re
 
 def parse_readme():
     """
-    Функция читает и анализирует файл README.md, чтобы извлечь информацию.
+    Функция читает и анализирует файл README004.md, чтобы извлечь информацию.
     """
     college = None
     course = None
@@ -10,15 +10,15 @@ def parse_readme():
     group = None
     
     try:
-        with open('README001.md', 'r', encoding='utf-8') as file:
+        with open('README004.md', 'r', encoding='utf-8') as file:
             content = file.read()
             
             # Извлекаем данные с помощью регулярных выражений
             college_match = re.search(r'Колледж:\s*(.+)', content)
-            course_match = re.search(r'Курc:\s*(.+)', content)  # Обратите внимание на опечатку в "Курc"
+            course_match = re.search(r'Курс:\s*(.+)', content)  # Обратите внимание на опечатку в "Курc"
             name_match = re.search(r'ФИ:\s*(.+)', content)
-            group_match = re.search(r'Команда:\s*(.+)', content)  # И здесь "Комманда"
-            id_match = re.search(r'ID:\s*(.+)', content)  # И здесь "Комманда"
+            group_match = re.search(r'Команда:\s*(.+)', content)  # И здесь "Команда"
+            id_match = re.search(r'ID:\s*(.+)', content)  # И здесь "Команда"
             
             if college_match:
                 college = college_match.group(1).strip()
