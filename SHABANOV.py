@@ -10,12 +10,12 @@ def parse_readme():
     group = None
     
     try:
-        with open('README001.md', 'r', encoding='utf-8') as file:
+        with open('README002.md', 'r', encoding='utf-8') as file:
             content = file.read()
             
             # Извлекаем данные с помощью регулярных выражений
             college_match = re.search(r'Колледж:\s*(.+)', content)
-            course_match = re.search(r'Курc:\s*(.+)', content)  # Обратите внимание на опечатку в "Курc"
+            course_match = re.search(r'Группа:\s*(.+)', content)  # Обратите внимание на опечатку в "Курc"
             name_match = re.search(r'ФИ:\s*(.+)', content)
             group_match = re.search(r'Команда:\s*(.+)', content)  # И здесь "Комманда"
             id_match = re.search(r'ID:\s*(.+)', content)  # И здесь "Комманда"
@@ -52,6 +52,7 @@ def main():
         print("❌ В README.md не найдена вся необходимая информация.")
         print("Пожалуйста, проверьте формат файла.")
         return
+    
     for i in range(5):
         # Выводим приветствие с использованием данных из README
         print("✅ Информация успешно получена!")
