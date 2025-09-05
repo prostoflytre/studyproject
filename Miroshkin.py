@@ -41,6 +41,7 @@ def generate_greeting(metrics):
     # Добавляем дополнительную информацию, если она есть
     additional_info = []
     if 'Группа' in metrics:
+        print('==========')
         additional_info.append(f"Группа — {metrics['Группа']}")
     if 'Команда' in metrics:
         additional_info.append(f"Команда: '{metrics['Команда']}'")
@@ -49,6 +50,7 @@ def generate_greeting(metrics):
     
     if additional_info:
         greeting += " " + ", ".join(additional_info) + "."
+        
     
     return greeting
 
@@ -60,6 +62,7 @@ if __name__ == "__main__":
     # Шаг 2: Если метрики найдены, генерируем и выводим приветствие
     if user_metrics:
         message = generate_greeting(user_metrics)
-        print(message)
+        for i in range(5):
+            print(message)
     else:
         print("Не удалось найти метрики в файле README.md для приветствия.")
