@@ -10,7 +10,7 @@ def parse_readme():
     group = None
     
     try:
-        with open('ID207621431.md', 'r', encoding='utf-8') as file:
+        with open('REDME004.md', 'r', encoding='utf-8') as file:
             content = file.read()
             
             # Извлекаем данные с помощью регулярных выражений
