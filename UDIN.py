@@ -9,7 +9,6 @@ def parse_readme_001():
     name = None
     group = None
     id = None
-    edit = None
     
     try:
         with open('README001.md', 'r', encoding='utf-8') as file:
@@ -21,7 +20,7 @@ def parse_readme_001():
             name_match = re.search(r'ФИ:\s*(.+)', content)
             group_match = re.search(r'Команда:\s*(.+)', content)  # И здесь "Комманда"
             id_match = re.search(r'ID:\s*(.+)', content)  # И здесь "ID"
-            edit_match = re.search(r'Измнение:\s*(.+)', content)  # И здесь "Изменение"
+        
             
             if college_match:
                 college = college_match.group(1).strip()
@@ -33,13 +32,12 @@ def parse_readme_001():
                 group = group_match.group(1).strip()
             if id_match:
                 id = id_match.group(1).strip()
-            if edit_match:
-                edit = edit_match.group(1).strip()
+
                 
     except FileNotFoundError:
         print("Ошибка: Файл README.md не найден в текущей директории.")
     
-    return college, course, name, group, id, edit
+    return college, course, name, group, id, 
 
 def main():
     """
@@ -50,10 +48,10 @@ def main():
     print()
     
     # Парсим данные из README
-    college, course, name, group, id, edit = parse_readme()
+    college, course, name, group, id = parse_readme_001()
     
     # Проверяем, что данные найдены
-    if not all([college, course, name, group, id, edit]):
+    if not all([college, course, name, group, id ]):
         print("❌ В README.md не найдена вся необходимая информация.")
         print("Пожалуйста, проверьте формат файла.")
         return
