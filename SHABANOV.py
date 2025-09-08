@@ -9,6 +9,7 @@ def parse_readme_002():
     course = None
     name = None
     group = None
+    id = None
     
     try:
         with open('README002.md', 'r', encoding='utf-8') as file:
