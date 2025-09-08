@@ -1,4 +1,4 @@
-```markdown
+
 # Оглавление
 
 1.  [studyproject](#studyproject)
@@ -19,7 +19,7 @@
         6.  [Требования к окружению](#requirements)
         7.  [Ограничения](#limitations)
         8.  [Пример использования](#usage-example)
-```
+
 
 <a name="studyproject"></a>
 ##  studyproject
