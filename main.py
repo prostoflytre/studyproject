@@ -1,58 +1,73 @@
 import re
+import os
 
-def main():
-    while True:
-        print("\n" + "="*50)
-        a = input("Введите номер README файла (1-4) или 'new' для ввода новых данных: ")
-        print("Чтобы завершить программу напишите 'end'")
-        
-        if a.lower() == "end":
-            break
-        elif a.lower() == "new":
-            input_new_data()
-        else:
-            parse_readme(a)
-
-
-def input_new(profile):
-                    
-                    Kollej = input("Введите название колледжа: ") 
-                    Kurs = input("Введите название курса: ") 
-                    FI = input("Введите ваше ФИ (через пробел): ") 
-                    Team = input("Введите название команды: ")
-                    ID = input("Введите ваш ID: ")
-                    content =f"""
-# studyproject
-Колледж: {Kollej}
-Курс: {Kurs}
-ФИ: {FI}
-Команда: {Team} 
-ID: {ID}
-                    """
-                    with open(f'README00{profile}.md', 'w', encoding='utf-8') as file:
-                        file.write(content)
-                    return Kollej, Kurs, FI, Team, ID
-
-def parse_readme(number):
-    """
-    Функция читает и анализирует файл READMEE.md, чтобы извлечь информацию.
-    """
-    college = None
-    course = None
-    name = None
-    group = None
-    id = None
+def list_readme_files():
+    """Показывает список существующих README00{people} файлов"""
+    print("\nСУЩЕСТВУЮЩИЕ ФАЙЛЫ:")
+    print("-" * 30)
     
+    readme_files = [f for f in os.listdir('.') if f.startswith('README00') and f.endswith('.md')]
+    
+    if not readme_files:
+        print("Файлы не найдены")
+        return []
+    
+    # Сортируем файлы по номеру
+    readme_files.sort()
+    
+    people = []
+    for file in readme_files:
+        # Извлекаем номер из имени файла
+        number = file.replace('README00', '').replace('.md', '')
+        if number.isdigit():
+            number = int(number)
+        else:
+            number = number.lstrip('0')
+        
+        print(f"- {file} (номер: {number})")
+        people.append(str(number))
+    
+    return people
+
+people = list_readme_files()
+
+def add_new_user():
+    new = people[-1] + 1
+    people.append(new)
+    college = input("Введите название колледжа: ") 
+    course = input("Введите название курса: ") 
+    name = input("Введите ваше ФИ (через пробел): ") 
+    group = input("Введите название команды: ")
+    id = input("Введите ваш ID: ")
+    content =f"""
+# studyproject
+Колледж: {college}
+Курс: {course}
+ФИ: {name}
+Команда: {group} 
+ID: {id}
+"""
+    with open(f'README00{new}.md', 'w', encoding='utf-8') as file:
+        file.write(content)
+    print(f"\n✅ Файл README00{new}.md успешно создан!")
+    return college, course, name, group, id
+
+def parse_readme(a):
+    college = ""
+    course = ""
+    name = ""
+    group = ""
+    id = ""
     try:
-        with open(f'README00{number}.md', 'r', encoding='utf-8') as file:
+        with open(f'README00{a}.md', 'r', encoding='utf-8') as file:
             content = file.read()
             
             # Извлекаем данные с помощью регулярных выражений
             college_match = re.search(r'Колледж:\s*(.+)', content)
-            course_match = re.search(r'Курс:\s*(.+)', content)  # Обратите внимание на опечатку в "Курc"
+            course_match = re.search(r'Курс:\s*(.+)', content)  
             name_match = re.search(r'ФИ:\s*(.+)', content)
-            group_match = re.search(r'Команда:\s*(.+)', content)  # И здесь "Команда"
-            id_match = re.search(r'ID:\s*(.+)', content)  # И здесь "Команда"
+            group_match = re.search(r'Команда:\s*(.+)', content) 
+            id_match = re.search(r'ID:\s*(.+)', content) 
             
             if college_match:
                 college = college_match.group(1).strip()
@@ -79,12 +94,23 @@ def parse_readme(number):
                 
     except FileNotFoundError:
         b = input("Хотите добавить нового пользователя? (Да/Нет)\n") 
-        if b == "Да":
-            input_new(number)
+        if b.lower() in ['да', 'д', 'yes', 'y']:
+            add_new_user()
+        else:
+            print("Возвращаемся назад.")
     
     return college, course, name, group, id
 
 
-        
-if __name__ == "__main__":
-    main()
+while True:
+
+    print("\n" + "="*50)
+    print("Чтобы завершить программу напишите 'end'")
+    a = input(f"Введите номер файла READM00{people} или 'new' для ввода новых данных: ")
+
+    if a.lower() == "end":
+        break
+    elif a.lower() == "new":
+        add_new_user()
+    else:
+        parse_readme(a)
