@@ -8,6 +8,8 @@ def parse_readme():
     course = None
     name = None
     group = None
+    id = None
+    edit = None
     
     try:
         with open('README001.md', 'r', encoding='utf-8') as file:
@@ -18,7 +20,8 @@ def parse_readme():
             course_match = re.search(r'Курc:\s*(.+)', content)  # Обратите внимание на опечатку в "Курc"
             name_match = re.search(r'ФИ:\s*(.+)', content)
             group_match = re.search(r'Команда:\s*(.+)', content)  # И здесь "Комманда"
-            id_match = re.search(r'ID:\s*(.+)', content)  # И здесь "Комманда"
+            id_match = re.search(r'ID:\s*(.+)', content)  # И здесь "ID"
+            edit_match = re.search(r'Измнение:\s*(.+)', content)  # И здесь "Изменение"
             
             if college_match:
                 college = college_match.group(1).strip()
@@ -30,11 +33,13 @@ def parse_readme():
                 group = group_match.group(1).strip()
             if id_match:
                 id = id_match.group(1).strip()
+            if edit_match:
+                edit = edit_match.group(1).strip()
                 
     except FileNotFoundError:
         print("Ошибка: Файл README.md не найден в текущей директории.")
     
-    return college, course, name, group, id
+    return college, course, name, group, id, edit
 
 def main():
     """
@@ -45,10 +50,10 @@ def main():
     print()
     
     # Парсим данные из README
-    college, course, name, group, id = parse_readme()
+    college, course, name, group, id, edit = parse_readme()
     
     # Проверяем, что данные найдены
-    if not all([college, course, name, group, id]):
+    if not all([college, course, name, group, id, edit]):
         print("❌ В README.md не найдена вся необходимая информация.")
         print("Пожалуйста, проверьте формат файла.")
         return
@@ -61,7 +66,8 @@ def main():
         print(f"Приветствуем студента {college}")
         print(f"Курс: {course}")
         print(f"Команда: {group}")
-        print(f"ID {id}")
+        print(f"ID: {id}")
+        print(f"Изменение: {id}")
         print("=" * 50)
         print()
         print("Желаем успехов в обучении! 🚀")

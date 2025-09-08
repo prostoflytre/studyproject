@@ -47,6 +47,8 @@ def generate_greeting(metrics):
         additional_info.append(f"Команда: '{metrics['Команда']}'")
     if 'ID' in metrics:
         additional_info.append(f"ID: '{metrics['ID']}'")
+    if 'Возраст' in metrics:
+        additional_info.append(f"Возраст: '{metrics['Возраст']}'")
     
     if additional_info:
         greeting += " " + ", ".join(additional_info) + "."
