@@ -2,18 +2,11 @@ import re
 import os
 
 def list_readme_files():
-    """Показывает список существующих README00{people} файлов в папке studyproject/Информация о пользователях"""
-    folder_path = r'studyproject/Информация о пользователях'
-    
-    # Проверяем существование папки
-    if not os.path.exists(folder_path):
-        print(f"Папка '{folder_path}' не найдена!")
-        return []
-    
+    """Показывает список существующих README00{people} файлов"""
     print("\nСУЩЕСТВУЮЩИЕ ФАЙЛЫ:")
     print("-" * 30)
     
-    readme_files = [f for f in os.listdir(folder_path) if f.startswith('README00') and f.endswith('.md')]
+    readme_files = [f for f in os.listdir('.') if f.startswith('README00') and f.endswith('.md')]
     
     if not readme_files:
         print("Файлы не найдены")
@@ -34,20 +27,18 @@ def list_readme_files():
         print(f"- {file} (номер: {number})")
         people.append(str(number))
     
-    return people, folder_path
+    return people
 
-people, folder_path = list_readme_files()
+people = list_readme_files()
 
 def add_new_user():
-    new = int(people[-1]) + 1 if people else 1
-    people.append(str(new))
-    
+    new = people[-1] + 1
+    people.append(new)
     college = input("Введите название колледжа: ") 
     course = input("Введите название курса: ") 
     name = input("Введите ваше ФИ (через пробел): ") 
     group = input("Введите название команды: ")
     id = input("Введите ваш ID: ")
-    
     content =f"""
 # studyproject
 Колледж: {college}
@@ -56,13 +47,9 @@ def add_new_user():
 Команда: {group} 
 ID: {id}
 """
-    # Создаем папку, если она не существует
-    os.makedirs(folder_path, exist_ok=True)
-    
-    file_path = os.path.join(folder_path, f'README00{new}.md')
-    with open(file_path, 'w', encoding='utf-8') as file:
+    with open(f'README00{new}.md', 'w', encoding='utf-8') as file:
         file.write(content)
-    print(f"\n✅ Файл README00{new}.md успешно создан в папке {folder_path}!")
+    print(f"\n✅ Файл README00{new}.md успешно создан!")
     return college, course, name, group, id
 
 def parse_readme(a):
@@ -71,11 +58,8 @@ def parse_readme(a):
     name = ""
     group = ""
     id = ""
-    
-    file_path = os.path.join(folder_path, f'README00{a}.md')
-    
     try:
-        with open(file_path, 'r', encoding='utf-8') as file:
+        with open(f'README00{a}.md', 'r', encoding='utf-8') as file:
             content = file.read()
             
             # Извлекаем данные с помощью регулярных выражений
@@ -119,13 +103,10 @@ def parse_readme(a):
 
 
 while True:
+
     print("\n" + "="*50)
     print("Чтобы завершить программу напишите 'end'")
-    
-    if people:
-        a = input(f"Введите номер файла README00{people} или 'new' для ввода новых данных: ")
-    else:
-        a = input("Файлы не найдены. Введите 'new' для создания нового файла или 'end' для выхода: ")
+    a = input(f"Введите номер файла READM00{people} или 'new' для ввода новых данных: ")
 
     if a.lower() == "end":
         break
