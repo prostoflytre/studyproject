@@ -16,7 +16,7 @@ def parse_readme_001():
             
             # Извлекаем данные с помощью регулярных выражений
             college_match = re.search(r'Колледж:\s*(.+)', content)
-            course_match = re.search(r'Курc:\s*(.+)', content)  # Обратите внимание на опечатку в "Курc"
+            course_match = re.search(r'Курс:\s*(.+)', content)  # Обратите внимание на опечатку в "Курc"
             name_match = re.search(r'ФИ:\s*(.+)', content)
             group_match = re.search(r'Команда:\s*(.+)', content)  # И здесь "Комманда"
             id_match = re.search(r'ID:\s*(.+)', content)  # И здесь "ID"
