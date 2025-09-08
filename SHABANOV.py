@@ -1,6 +1,5 @@
 import re
 
-
 def parse_readme_002():
     """
     Функция читает и анализирует файл README.md, чтобы извлечь информацию.
@@ -17,10 +16,11 @@ def parse_readme_002():
             
             # Извлекаем данные с помощью регулярных выражений
             college_match = re.search(r'Колледж:\s*(.+)', content)
-            course_match = re.search(r'Группа:\s*(.+)', content)  # Обратите внимание на опечатку в "Курc"
+            course_match = re.search(r'Курc:\s*(.+)', content)  # Обратите внимание на опечатку в "Курc"
             name_match = re.search(r'ФИ:\s*(.+)', content)
             group_match = re.search(r'Команда:\s*(.+)', content)  # И здесь "Комманда"
-            id_match = re.search(r'ID:\s*(.+)', content)  # И здесь "Комманда"
+            id_match = re.search(r'ID:\s*(.+)', content)  # И здесь "ID"
+        
             
             if college_match:
                 college = college_match.group(1).strip()
@@ -32,6 +32,7 @@ def parse_readme_002():
                 group = group_match.group(1).strip()
             if id_match:
                 id = id_match.group(1).strip()
+
                 
     except FileNotFoundError:
         print("Ошибка: Файл README.md не найден в текущей директории.")
@@ -50,11 +51,10 @@ def main():
     college, course, name, group, id = parse_readme_002()
     
     # Проверяем, что данные найдены
-    if not all([college, course, name, group, id]):
+    if not all([college, course, name, group, id ]):
         print("❌ В README.md не найдена вся необходимая информация.")
         print("Пожалуйста, проверьте формат файла.")
         return
-    
     for i in range(5):
         # Выводим приветствие с использованием данных из README
         print("✅ Информация успешно получена!")
@@ -64,7 +64,8 @@ def main():
         print(f"Приветствуем студента {college}")
         print(f"Курс: {course}")
         print(f"Команда: {group}")
-        print(f"ID {id}")
+        print(f"ID: {id}")
+        print(f"Изменение: {id}")
         print("=" * 50)
         print()
         print("Желаем успехов в обучении! 🚀")
