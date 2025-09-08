@@ -1,9 +1,9 @@
 import re
 
 from UDIN import parse_readme_001
-from Malinevskiy import parse_readme_004
-from Miroshkin import parse_readme_003
 from SHABANOV import parse_readme_002
+from Miroshkin import parse_readme_003
+from Malinevskiy import parse_readme_004
 
 def main():
 
