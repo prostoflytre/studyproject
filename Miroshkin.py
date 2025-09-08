@@ -62,7 +62,7 @@ if __name__ == "__main__":
     # Шаг 2: Если метрики найдены, генерируем и выводим приветствие
     if user_metrics:
         message = generate_greeting(user_metrics)
-        for i in range(5):
+        for i in range(3):
             print(message)
     else:
         print("Не удалось найти метрики в файле README.md для приветствия.")
