@@ -1,8 +1,22 @@
 import re
 import os
-
+# Main фаункция
+def main():
+    while True:
+        print("\n" + "="*50)
+        print("Чтобы завершить программу напишите 'end'")
+        a = input(f"Введите номер файла READM00{people} или 'new' для ввода новых данных: ")
+        
+        # Проверка введённых пользователем данных
+        if a.lower() == "end":
+            break
+        elif a.lower() == "new":
+            add_new_user()
+        else:
+            parse_readme(a)
+            
+# Показывает список существующих README00* файлов
 def list_readme_files():
-    """Показывает список существующих README00* файлов"""
     print("\nСУЩЕСТВУЮЩИЕ ФАЙЛЫ:")
     print("-" * 30)
     
@@ -31,6 +45,7 @@ def list_readme_files():
 
 people = list_readme_files()
 
+# Создание нового пользователя
 def add_new_user():
     new = people[-1] + 1
     people.append(new)
@@ -47,11 +62,13 @@ def add_new_user():
 Команда: {group} 
 ID: {id}
 """
+    # Создание файла нового пользователя
     with open(f'README00{new}.md', 'w', encoding='utf-8') as file:
         file.write(content)
     print(f"\n✅ Файл README00{new}.md успешно создан!")
     return college, course, name, group, id
 
+# Получение значений из README файла и их вывод
 def parse_readme(a):
     college = ""
     course = ""
@@ -80,6 +97,7 @@ def parse_readme(a):
             if id_match:
                 id = id_match.group(1).strip()
 
+            # Вывод данных существующего пользователя
             print("✅ Информация успешно получена!")
             print()
             print("=" * 50)
@@ -91,7 +109,7 @@ def parse_readme(a):
             print("=" * 50)
             print()
             print("Желаем успехов в обучении! 🚀")
-                
+    # Запрос на создание нового пользователя            
     except FileNotFoundError:
         b = input("Хотите добавить нового пользователя? (Да/Нет)\n") 
         if b.lower() in ['да', 'д', 'yes', 'y']:
@@ -101,16 +119,6 @@ def parse_readme(a):
     
     return college, course, name, group, id
 
-
-while True:
-
-    print("\n" + "="*50)
-    print("Чтобы завершить программу напишите 'end'")
-    a = input(f"Введите номер файла READM00{people} или 'new' для ввода новых данных: ")
-
-    if a.lower() == "end":
-        break
-    elif a.lower() == "new":
-        add_new_user()
-    else:
-        parse_readme(a)
+# Запуск main функции
+if __name__ == "__main__":
+    main()
