@@ -1,6 +1,6 @@
 import re
 
-def parse_readme():
+def parse_readme_001():
     """
     Функция читает и анализирует файл README.md, чтобы извлечь информацию.
     """
