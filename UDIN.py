@@ -19,7 +19,7 @@ def parse_readme_001():
             college_match = re.search(r'Колледж:\s*(.+)', content)
             course_match = re.search(r'Курс:\s*(.+)', content)  # Обратите внимание на опечатку в "Курc"
             name_match = re.search(r'ФИ:\s*(.+)', content)
-            group_match = re.search(r'Команда:\s*(.+)', content)  # И здесь "Комманда"
+            group_match = re.search(r'Команда:\s*(.+)', content)  # И здесь "Команда"
             id_match = re.search(r'ID:\s*(.+)', content)  # И здесь "ID"
             update_match = re.search(r'Изменение:\s*(.+)', content)
             
