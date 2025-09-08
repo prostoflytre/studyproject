@@ -1,6 +1,7 @@
 import re
 
-def parse_readme():
+
+def parse_readme_002():
     """
     Функция читает и анализирует файл README.md, чтобы извлечь информацию.
     """
@@ -45,7 +46,7 @@ def main():
     print()
     
     # Парсим данные из README
-    college, course, name, group, id = parse_readme()
+    college, course, name, group, id = parse_readme_002()
     
     # Проверяем, что данные найдены
     if not all([college, course, name, group, id]):
