@@ -43,10 +43,23 @@ def output(profile):
                 college, course, name, group, id = parse_readme_004()
                 output_in()
             else:
-                 print("Введите иное значение")
-
-            
-
+                b = input("Хотите добавить нового пользователя? (Да/Нет)\n") 
+                if b == "Да":
+                    Kollej = input("Введите название колледжа: ") 
+                    Kurs = input("Введите название курса: ") 
+                    FI = input("Введите ваше ФИ (через пробел): ") 
+                    Team = input("Введите название команды: ")
+                    ID = input("Введите ваш ID: ")
+                    content =f"""
+# studyproject
+Колледж: {Kollej}
+Курc: {Kurs}
+ФИ: {FI}
+Команда: {Team} 
+ID: {ID}
+                    """
+                    with open('REDMEENEW.md', 'w', encoding='utf-8') as file:
+                        file.write(content)
         
 if __name__ == "__main__":
     main()
