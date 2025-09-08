@@ -15,6 +15,7 @@ def main():
         else:
               output(a)
 
+
 def output(profile):
             
             def output_in():
@@ -29,22 +30,8 @@ def output(profile):
                 print("=" * 50)
                 print()
                 print("Желаем успехов в обучении! 🚀")
-                
-            if profile == "1":
-                college, course, name, group, id = parse_readme_001()
-                output_in()
-            if profile == "2":
-                college, course, name, group, id = parse_readme_002()
-                output_in()
-            if profile == "3":
-                college, course, name, group, id = parse_readme_003()  
-                output_in()
-            if profile == "4":
-                college, course, name, group, id = parse_readme_004()
-                output_in()
-            else:
-                b = input("Хотите добавить нового пользователя? (Да/Нет)\n") 
-                if b == "Да":
+
+            def input_new():
                     Kollej = input("Введите название колледжа: ") 
                     Kurs = input("Введите название курса: ") 
                     FI = input("Введите ваше ФИ (через пробел): ") 
@@ -60,6 +47,25 @@ ID: {ID}
                     """
                     with open('REDMEENEW.md', 'w', encoding='utf-8') as file:
                         file.write(content)
+                    return Kollej, Kurs, FI, Team, ID
+                
+            if profile == "1":
+                college, course, name, group, id = parse_readme_001()
+                output_in()
+            elif profile == "2":
+                college, course, name, group, id = parse_readme_002()
+                output_in()
+            elif profile == "3":
+                college, course, name, group, id = parse_readme_003()  
+                output_in()
+            elif profile == "4":
+                college, course, name, group, id = parse_readme_004()
+                output_in()
+            else:
+                b = input("Хотите добавить нового пользователя? (Да/Нет)\n") 
+                if b == "Да":
+                    college, course, name, group, id = input_new()
+                    output_in()
         
 if __name__ == "__main__":
     main()
