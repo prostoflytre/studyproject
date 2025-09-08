@@ -50,7 +50,7 @@ def main():
     print()
     
     # Парсим данные из README
-    college, course, name, group, id, edit = parse_readme()
+    college, course, name, group, id, edit = parse_readme_001()
     
     # Проверяем, что данные найдены
     if not all([college, course, name, group, id, edit]):
