@@ -1,70 +1,76 @@
-import os
 import re
-
-def read_user_metrics_from_readme(readme_path='README003.md'):
+def parse_readme_003():
     """
-    Читает файл README.md и извлекает из него метрики пользователя.
-    Ожидает найти строки в формате 'Ключ: Значение'.
-    Возвращает словарь с найденными метриками.
+    Функция читает и анализирует файл README003.md, чтобы извлечь информацию.
     """
-    metrics = {}
+    college = None
+    course = None
+    name = None
+    group = None
+    id = None
+    edit = None
+    
     try:
-        with open(readme_path, 'r', encoding='utf-8') as file:
+        with open('README003.md', 'r', encoding='utf-8') as file:
             content = file.read()
-            # Используем регулярное выражение для поиска шаблона "Ключ: Значение"
-            pattern = r'^(\w+):\s*(.+)$'
-            matches = re.finditer(pattern, content, re.MULTILINE)
             
-            for match in matches:
-                key = match.group(1).strip()   # Например, "Name"
-                value = match.group(2).strip() # Например, "Алексей"
-                metrics[key] = value
+            # Извлекаем данные с помощью регулярных выражений
+            college_match = re.search(r'Колледж:\s*(.+)', content)
+            course_match = re.search(r'Курc:\s*(.+)', content)  # Обратите внимание на опечатку в "Курc"
+            name_match = re.search(r'ФИ:\s*(.+)', content)
+            group_match = re.search(r'Команда:\s*(.+)', content)  # И здесь "Комманда"
+            id_match = re.search(r'ID:\s*(.+)', content)  # И здесь "ID"
+            edit_match = re.search(r'Измнение:\s*(.+)', content)  # И здесь "Изменение"
+            
+            if college_match:
+                college = college_match.group(1).strip()
+            if course_match:
+                course = course_match.group(1).strip()
+            if name_match:
+                name = name_match.group(1).strip()
+            if group_match:
+                group = group_match.group(1).strip()
+            if id_match:
+                id = id_match.group(1).strip()
+            if edit_match:
+                edit = edit_match.group(1).strip()
                 
     except FileNotFoundError:
-        print(f"Ошибка: Файл '{readme_path}' не найден в текущей директории.")
-    except Exception as e:
-        print(f"Произошла ошибка при чтении файла: {e}")
+        print("Ошибка: Файл README003.md не найден в текущей директории.")
     
-    return metrics
+    return college, course, name, group, id, edit
 
-def generate_greeting(metrics):
+def main():
     """
-    Генерирует приветственное сообщение на основе извлеченных метрик.
+    Главная функция программы.
     """
-    # Основное приветствие по имени
-    name = metrics.get('ФИ')
-    if name:
-        greeting = f"Привет, {name}!"
-    else:
-        greeting = "Привет!"
+    print("👋 Добро пожаловать в программу приветствия!")
+    print("Читаю информацию из README.md...")
+    print()
     
-    # Добавляем дополнительную информацию, если она есть
-    additional_info = []
-    if 'Группа' in metrics:
-        print('==========')
-        additional_info.append(f"Группа — {metrics['Группа']}")
-    if 'Команда' in metrics:
-        additional_info.append(f"Команда: '{metrics['Команда']}'")
-    if 'ID' in metrics:
-        additional_info.append(f"ID: '{metrics['ID']}'")
-    if 'Возраст' in metrics:
-        additional_info.append(f"Возраст: '{metrics['Возраст']}'")
+    # Парсим данные из README
+    college, course, name, group, id, edit = parse_readme_003()
     
-    if additional_info:
-        greeting += " " + ", ".join(additional_info) + "."
-        
-    
-    return greeting
+    # Проверяем, что данные найдены
+    if not all([college, course, name, group, id, edit]):
+        print("❌ В README.md не найдена вся необходимая информация.")
+        print("Пожалуйста, проверьте формат файла.")
+        return
+    for i in range(5):
+        # Выводим приветствие с использованием данных из README
+        print("✅ Информация успешно получена!")
+        print()
+        print("=" * 50)
+        print(f"Здравствуйте, {name}!") 
+        print(f"Приветствуем студента {college}")
+        print(f"Курс: {course}")
+        print(f"Команда: {group}")
+        print(f"ID: {id}")
+        print(f"Изменение: {id}")
+        print("=" * 50)
+        print()
+        print("Желаем успехов в обучении! 🚀")
 
-# Главная логика программы
+# Запуск программы
 if __name__ == "__main__":
-    # Шаг 1: Извлекаем метрики из README.md
-    user_metrics = read_user_metrics_from_readme()
-    
-    # Шаг 2: Если метрики найдены, генерируем и выводим приветствие
-    if user_metrics:
-        message = generate_greeting(user_metrics)
-        for i in range(3):
-            print(message)
-    else:
-        print("Не удалось найти метрики в файле README.md для приветствия.")
+    main()
