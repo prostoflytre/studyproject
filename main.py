@@ -1,12 +1,15 @@
 import re
 
 def main():
-
     while True:
-        a = input("Ввдите номер README файла: 00")
-        print("Чтобы завршить программу напиши end")
-        if a == "end":
+        print("\n" + "="*50)
+        a = input("Введите номер README файла (1-4) или 'new' для ввода новых данных: ")
+        print("Чтобы завершить программу напишите 'end'")
+        
+        if a.lower() == "end":
             break
+        elif a.lower() == "new":
+            input_new_data()
         else:
             parse_readme(a)
 
