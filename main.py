@@ -1,5 +1,5 @@
 import re
-import UDIN, Malinevskiy, Miroshkin, SHABANOV
+
 from UDIN import parse_readme_001
 from Malinevskiy import parse_readme_004
 from Miroshkin import parse_readme_003
