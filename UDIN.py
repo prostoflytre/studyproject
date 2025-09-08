@@ -37,7 +37,7 @@ def parse_readme_001():
     except FileNotFoundError:
         print("Ошибка: Файл README.md не найден в текущей директории.")
     
-    return college, course, name, group, id, 
+    return college, course, name, group, id
 
 def main():
     """
