@@ -67,7 +67,7 @@
         ФИ: Удин Дмитрий
         Команда: 001-ШУММ 
         ID: 116567272
-        Измнение: 09.08.25 mm/dd/yy
+        Изменение: 09.08.25 mm/dd/yy
         ```
 <a name="script-files"></a>
 - ## Скрипты UDIN.py, SHABANOV.py, MIROSHKIN.py, MALINEVSKIY.py
