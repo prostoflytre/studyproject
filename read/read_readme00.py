@@ -1,5 +1,6 @@
 import re
 import os
+from pathlib import Path
 # Main фаункция
 def main():
     global people
@@ -19,14 +20,19 @@ def main():
             parse_readme(a)
             
 # Показывает список существующих README00* файлов
+
+
 def list_readme_files():
     print("\nСУЩЕСТВУЮЩИЕ ФАЙЛЫ:")
     print("-" * 30)
     
-    readme_files = [f for f in os.listdir('.') if f.startswith('README00') and f.endswith('.md')]
+    # Укажите правильный путь к папке с файлами
+    folder_path = "c:/Users/Student/gihub 21is/studyproject/read/"
+    
+    readme_files = [f for f in os.listdir(folder_path) if f.startswith('README00') and f.endswith('.md')]
     
     if not readme_files:
-        print("Файлы не найдены")
+        print("Файлы не найдены в папке:", folder_path)
         return []
     
     # Сортируем файлы по номеру

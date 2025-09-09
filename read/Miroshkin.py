@@ -1,5 +1,5 @@
 import re
-
+import os
 def parse_readme_003():
     """
     Функция читает и анализирует файл README003.md, чтобы извлечь информацию.
@@ -11,8 +11,12 @@ def parse_readme_003():
     id = None
     
     try:
-        with open('README003.md', 'r', encoding='utf-8') as file:
+        folder_path = "c:/Users/Student/gihub 21is/studyproject/read/"
+        file_path = os.path.join(folder_path, 'README003.md')
+        
+        with open(file_path, 'r', encoding='utf-8') as file:
             content = file.read()
+            
             
             # Извлекаем данные с помощью регулярных выражений
             college_match = re.search(r'Колледж:\s*(.+)', content)

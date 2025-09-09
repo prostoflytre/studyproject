@@ -1,4 +1,5 @@
 import re
+import os
 
 def parse_readme_004():
     """
@@ -11,7 +12,10 @@ def parse_readme_004():
     id = None
     
     try:
-        with open('README004.md', 'r', encoding='utf-8') as file:
+        folder_path = "c:/Users/Student/gihub 21is/studyproject/read/"
+        file_path = os.path.join(folder_path, 'README004.md')
+        
+        with open(file_path, 'r', encoding='utf-8') as file:
             content = file.read()
             
             # Извлекаем данные с помощью регулярных выражений
