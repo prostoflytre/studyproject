@@ -2,6 +2,9 @@ import re
 import os
 # Main фаункция
 def main():
+    global people
+    people = list_readme_files()
+    
     while True:
         print("\n" + "="*50)
         print("Чтобы завершить программу напишите 'end'")
@@ -43,11 +46,11 @@ def list_readme_files():
     
     return people
 
-people = list_readme_files()
+
 
 # Создание нового пользователя
 def add_new_user():
-    new = people[-1] + 1
+    new = len(people) + 1
     people.append(new)
     college = input("Введите название колледжа: ") 
     course = input("Введите название курса: ") 
